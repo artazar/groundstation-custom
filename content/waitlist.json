@@ -1,0 +1,58 @@
+{
+  "product_name": "Groundstation",
+  "hero_title": "Prompt to live site. On your server.",
+  "hero_subtitle": "Describe your idea. Groundstation writes the page, builds the container, and ships it to a VPS you already own.",
+  "cta_button_text": "Get Early Access",
+  "social_proof_badge": "Join your fellow indie hackers on the list",
+  "features": [
+    {
+      "icon": "zap",
+      "title": "Live in 90 seconds",
+      "description": "Prompt, preview, deploy. No Dockerfiles, no DNS tickets, no build queue."
+    },
+    {
+      "icon": "server",
+      "title": "Your box, your rules",
+      "description": "Deploys to the Hetzner or DigitalOcean droplet already sitting half empty."
+    },
+    {
+      "icon": "palette",
+      "title": "Designs that convert",
+      "description": "Hand-built templates, not scraped ones. Dark, sharp, and tested on real traffic."
+    },
+    {
+      "icon": "git-branch",
+      "title": "You own the code",
+      "description": "Full source pushed to your GitHub. Walk away with everything, any time."
+    },
+    {
+      "icon": "shield-check",
+      "title": "Keys stay yours",
+      "description": "Credentials never touch our database. Nothing for us to leak or lose."
+    },
+    {
+      "icon": "globe",
+      "title": "Domains on autopilot",
+      "description": "Point a domain once. Records, redirects and SSL renew themselves."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Do I need to know Docker or Coolify?",
+      "answer": "No. If you can paste an API token, you can deploy. Everything underneath is generated, wired and verified for you."
+    },
+    {
+      "question": "What does hosting cost?",
+      "answer": "Whatever your VPS costs. A five dollar box runs a dozen landing pages. We never charge per project or per seat."
+    },
+    {
+      "question": "Can I edit the site afterwards?",
+      "answer": "Yes. Re-prompt any section, or clone the repo and edit it like any other Next.js project. No lock-in, no proprietary format."
+    },
+    {
+      "question": "When does it open?",
+      "answer": "Private beta this quarter, in small batches. The waitlist goes out in order, and early users keep founder pricing for life."
+    }
+  ],
+  "footer_note": "No spam. One email when we open the doors."
+}

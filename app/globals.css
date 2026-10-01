@@ -1,0 +1,285 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #05060b;
+  --color-ink-soft: #0a0c15;
+  --color-violet: #7c5cff;
+  --color-cyan: #22d3ee;
+  --color-fuchsia: #e879f9;
+
+  --font-sans: "Inter Variable", ui-sans-serif, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: #e8e9f2;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(124, 92, 255, 0.35);
+  color: #fff;
+}
+
+/* ---------------------------------------------------------------- ambience */
+
+.aurora {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(110px);
+  opacity: 0.6;
+  will-change: transform;
+}
+
+.aurora-violet {
+  background: radial-gradient(circle, #7c5cff 0%, rgba(124, 92, 255, 0) 70%);
+  animation: drift-a 24s ease-in-out infinite;
+}
+
+.aurora-cyan {
+  background: radial-gradient(circle, #22d3ee 0%, rgba(34, 211, 238, 0) 70%);
+  animation: drift-b 30s ease-in-out infinite;
+}
+
+.aurora-fuchsia {
+  background: radial-gradient(circle, #e879f9 0%, rgba(232, 121, 249, 0) 70%);
+  animation: drift-c 34s ease-in-out infinite;
+}
+
+@keyframes drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(6%, 8%, 0) scale(1.15); }
+}
+
+@keyframes drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); }
+  50% { transform: translate3d(-8%, -6%, 0) scale(0.9); }
+}
+
+@keyframes drift-c {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(0.95); }
+  50% { transform: translate3d(5%, -10%, 0) scale(1.1); }
+}
+
+/* Faint engineering grid, masked so it dissolves toward the edges. */
+.grid-veil {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 75% 50% at 50% 4%, #000 8%, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 50% at 50% 4%, #000 8%, transparent 72%);
+}
+
+/* A cone of light falling from the top edge, behind the headline. */
+.spotlight {
+  position: absolute;
+  left: 50%;
+  top: -6rem;
+  width: 76rem;
+  height: 46rem;
+  transform: translateX(-50%);
+  background: conic-gradient(
+    from 180deg at 50% 0%,
+    transparent 0deg,
+    rgba(124, 92, 255, 0.14) 62deg,
+    rgba(190, 170, 255, 0.2) 90deg,
+    rgba(34, 211, 238, 0.12) 118deg,
+    transparent 180deg
+  );
+  filter: blur(28px);
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 82%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 82%);
+}
+
+/* Film grain keeps the gradients from banding on cheap panels. */
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.14;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* Horizon line under the hero. */
+.horizon {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(124, 92, 255, 0.7),
+    rgba(34, 211, 238, 0.6),
+    transparent
+  );
+}
+
+/* ------------------------------------------------------------------- type */
+
+.gradient-text {
+  background: linear-gradient(120deg, #ffffff 18%, #c9bfff 52%, #7fe6f7 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------------------------------------------------------------- surfaces */
+
+.glass {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.055) 0%,
+    rgba(255, 255, 255, 0.018) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(12px);
+}
+
+.feature-card {
+  position: relative;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    240px circle at 50% 0%,
+    rgba(124, 92, 255, 0.16),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.feature-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 18px 50px -24px rgba(124, 92, 255, 0.55);
+}
+
+.feature-card:hover::after {
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------------ badge */
+
+.badge-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 80%
+  );
+  transform: translateX(-100%);
+  animation: sweep 5.5s ease-in-out infinite;
+}
+
+@keyframes sweep {
+  0%, 60% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ----------------------------------------------------------------- button */
+
+.cta {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(120deg, #8b6cff 0%, #6d4bff 45%, #22d3ee 130%);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.14) inset,
+    0 12px 40px -12px rgba(124, 92, 255, 0.9);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.cta:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.22) inset,
+    0 16px 50px -10px rgba(124, 92, 255, 1);
+}
+
+.cta:active {
+  transform: translateY(0);
+}
+
+.cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.7s ease;
+}
+
+.cta:hover::after {
+  transform: translateX(120%);
+}
+
+/* ------------------------------------------------------------------ entry */
+
+.rise {
+  opacity: 0;
+  animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------------------------------------------------------- details */
+
+details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+details[open] .faq-chevron {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .rise {
+    opacity: 1;
+  }
+}
